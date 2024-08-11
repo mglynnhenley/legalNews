@@ -1,37 +1,64 @@
-# NOTES ON MY IMPLEMENTATION
+# Next.js Blog Application
 
-# SEARCH ALGORITHM 
+Welcome to the **Next.js Blog Application** project! This repository contains a simple blog platform that features a search algorithm, favorites functionality, email validation, and more. The project is built using Next.js, React, and TypeScript.
 
-I have used a prefix search trie for my search algorithm, contained in utils/search.tsx.
+## Features
 
-I have chosen to do this because it brings the search time complexity to proportional to the search term length, although there is an increased time complexity for creating the search trie. This only happens when the page is initially rendered, so this is a reasonable tradeoff.
+### 1. Search Algorithm
+- **Prefix Search Trie**: Implemented in `utils/search.tsx`, this algorithm allows for efficient searching by reducing the search time complexity to be proportional to the length of the search term.
+- **Trade-offs**: While the creation of the search trie has a higher initial time complexity, this only occurs during the initial page render, making it a reasonable trade-off. The current implementation supports searching for prefixes of words. Future improvements could extend this to support multiple words.
 
-We might expect the titles and subtitles for each articles, as they are on the same topic, to contain some of the same words, which decreases the space required. Although for large numbers of articles this may still create a large search trie, getting subsets of large numbers of posts from the API at a time and getting more on user scrolling could create a solution in this case. The number of posts given in the challenge is small hence we do not face this issue.
+### 2. Critical Loading Times
+- **Fetch Caching**: The fetch method used in `utils/dataService.tsx` automatically caches fetched data, reducing the need to refetch and thereby decreasing waiting times for the user.
+- [More information on fetch caching](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating).
 
-The way that it is implemented at the moment allows the user to search for prefixes of words. Ideally the user should be able to search for multiple words, but unfortunately I ran out of time to implement this, although I would not expect the extension of the existing search trie would not be much more complicated.
+### 3. Keep Favorites After Reloading
+- **React Context**: Implemented to ensure that favorite posts persist across page reloads. The context is placed in the layout folder to wrap the entire application.
 
-# CRITICAL LOADING TIMES
-The fetch method used in the utils/dataService.tsx functions automatically caches the return values of fetch, so that the data does not need to be fetched every time, decreasing waiting times for the user.
+### 4. Email Validation
+- **Regular Expressions**: Used to validate email addresses, improving user experience by ensuring that only valid email structures are submitted to the database.
 
-( https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating )
+### 5. Tests
+- **Planned Tests**: Although tests were not implemented due to time constraints, the following tests were planned:
+  - **Favorites Filtering**: Ensure favorite items appear correctly when filtered on the post list screen.
+  - **Search Validation**: Confirm that search results only contain posts with valid prefixes.
+  - **Email Input Validation**: Verify that the correct error message appears for invalid email formats.
+  - **No Posts Found**: Ensure the appropriate message is displayed when no posts match the search criteria.
+  
+- **Testing Framework**: Jest was intended to be used for these tests, leveraging experience from a previous internship using React and TypeScript.
 
-# KEEP FAVORITES AFTER RELOADING
-I have used react context so that the favorite posts persist across reloads, the context is placed in the layout folder so wraps the entire application. 
+### 6. Other Extensions
+- **Text Formatting**: Future improvements could focus on better formatting of the article text, such as dividing content into paragraphs where appropriate.
+- **SCSS Structure**: Enhancing the structure of SCSS files by increasing the number of shared variables across different files.
 
-# EMAIL VALIDATION
-I have used regular expressions to validate the email address to improve user experience and ensure that the emails submitted to the database hold the structure of valid email addresses. 
+## Getting Started
 
-# TESTS
-Unfortunately I ran out of time to write tests for this web application, I will outline some of the tests I had planned on doing below:
+### Installation
 
-I planned to use jest to test my web application, this is the testing framework I used in my internship last summer with react and typescript. 
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/nextjs-blog-application.git
+   ```
 
-Two of the non-standard tests that I planned on writing was checking that the favorite items appeared when filtered in the post list screen and ensuring that the search results only contained posts with valid prefixes. Additionally tests for the correct error message in the email input and when no posts are found would be needed.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-For these tests I would need to mock the functions in the utils/dataService file
+### Running the Application
 
-# OTHER EXTENSIONS
+1. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+   - This will start the application in development mode, accessible at `http://localhost:3000`.
 
-If I had more time I would have worked on formatting the text of the article, looking for places where it should be divided into paragraphs. I would have also improved the structure of the SCSS files, increasing the number of shared variables between the different files.
+2. **Build and start the production server**:
+   ```bash
+   npm run build
+   npm start
+   ```
 
-# legalNews
+## License
+
+This project is licensed under the MIT License.
