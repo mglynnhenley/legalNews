@@ -1,6 +1,6 @@
-# Next.js Blog Application
+# Legal Blog 
 
-Welcome to the **Next.js Blog Application** project! This repository contains a simple blog platform that features a search algorithm, favorites functionality, email validation, and more. The project is built using Next.js, React, and TypeScript.
+Welcome to the **Legal Blog** project! This repository contains a simple blog platform that features a search algorithm, favorites functionality, email validation, and more. The project is built using Next.js, React, and TypeScript.
 
 ## Features
 
