@@ -1,0 +1,64 @@
+@import 'variables';
+
+@mixin breakpoint($size) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+
+.search {
+  position: relative;
+  border-radius: $borderRadius;
+  background-color: rgba($common-black, 0.15);
+  &:hover {
+    background-color: rgba($common-black, 0.25);
+  }
+  margin-right: 0;
+  margin-left: 0;
+  width: 50%;
+  max-width: 400px; 
+  align-items:start;
+}
+
+.searchIconWrapper {
+  padding: $spacing-2;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputBase {
+  color: #011a5f;
+
+  .MuiInputBase-input {
+    padding: $spacing-1 $spacing-1 $spacing-1 0;
+    padding-left: calc(1em + #{$spacing-4});
+    width: 100%;
+
+    @include breakpoint(md) {
+      width: auto;
+    }
+
+     font-size: 16px;
+     @media screen and (max-width: 600px) {
+       font-size: 8px; 
+     }
+  }
+}
+
+.logo-container {
+  width: 8vw;
+  height: 8vh;
+  padding-left: 4vw;
+  margin: 0 auto; 
+  text-align: center; 
+}
+
+.favorite-button-text {
+  @media screen and (max-width: $breakpoint-sm) {
+    font-size: 9px; 
+  }
+}
